@@ -1,0 +1,40 @@
+ <div class="row">
+   <div class="col-lg-8 mx-auto">
+     <h1 class="h3 mb-4 text-center ">View Phone Book</h1>
+     <div class="card rounded-3">
+       <div class="card-body p-5">
+         <div class="  my-3" *ngIf="phoneBookList">
+           <div class="mb-4">
+            <form [formGroup]="searchForm">
+             <input type="text" class="form-control" formControlName="searchNumber" (keyup)="applySarchFilter($event)"  
+             placeholder="Search"> 
+            </form>
+           </div>
+           <div class="table-responsive">
+             <table class="table">
+               <thead>
+                 <tr> 
+                   <th scope="col" class="py-3 w-50 text-left">Name</th>
+                   <th scope="col" class="py-3  text-left">Phone Number</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let item of filteredPhoneBookList">
+                   <td class="text-left"> 
+                     {{item.Name}}
+                   </td>
+                   <td class=" text-left">{{item.PhoneNumber}}</td>
+                 </tr>
+               </tbody>
+             </table>
+             <h6 class="mt-4">To add more contacts clicks <a href="javaScript:;" [routerLink]="'/add-phone-book'">here</a></h6>
+           </div>
+         </div>
+         <div class="text-center my-3" *ngIf="!phoneBookList">
+           <h5>No contacts avilable</h5>
+           <h6 class="mt-4">Please add contacts <a href="javaScript:;" [routerLink]="'/add-phone-book'">here</a></h6>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

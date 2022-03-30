@@ -1,0 +1,46 @@
+ <div class="row">
+   <div class="col-lg-6 mx-auto">
+     <form class="form" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+       <h1 class="h3 mb-4 text-center ">Add Contact</h1>
+       <div class="card rounded-3">
+         <div class="card-body p-5">
+           <!-- Name starts-->
+           <div class="mb-4">
+             <label for="name" class="form-label">Name</label>
+             <input type="text" class="form-control" formControlName="Name">
+
+             <div *ngIf="submitted && addFormControl.Name.errors" class="text-danger">
+               <div *ngIf="addFormControl.Name.errors?.required">Name is required</div>
+             </div>
+           </div>
+           <!-- Name end-->
+
+           <!-- Phone starts-->
+           <div class="mb-4">
+             <label for="phone" class="form-label">Phone Number</label>
+             <input type="text" class="form-control" formControlName="PhoneNumber" maxlength="10"
+               oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+             <div *ngIf="submitted && addFormControl.PhoneNumber.errors" class="text-danger">
+               <div *ngIf="addFormControl.PhoneNumber.errors?.required">Phone number is required</div>
+               <div *ngIf="addFormControl.PhoneNumber.errors?.pattern">Phone number must be 10 characters long.</div>
+             </div>
+           </div>
+           <!-- Phone end-->
+           <!-- Sucess start-->
+           <div class="alert alert-primary text-center" role="alert" *ngIf="sucessMsg">
+             Contact added successfully
+           </div>
+           <!-- Sucess end-->
+
+           <!-- button starts-->
+           <div class=" d-flex flex-column flex-md-row align-items-center  ">
+             <a role="butto" class="btn btn-outline-primary " [routerLink]="'/view-phone-book'">View Phone Book</a>
+             <button type="submit" class="btn btn-primary ms-md-auto">Add Contact</button>
+           </div>
+           <!-- button end-->
+           
+         </div>
+       </div>
+     </form>
+   </div>
+ </div>
